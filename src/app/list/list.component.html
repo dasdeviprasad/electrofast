@@ -1,0 +1,16 @@
+<div class="container pt-5 pb-5 px-4">
+  <div class="row gx-5 gy-5">
+    <div class="col-3" *ngFor="let item of data">
+      <figure class="text-center card p-2">
+        <img src={{item.url}} class="figure-img img-lg rounded m-auto" style="object-fit: contain;" />
+        <button type="button" class="btn btn-outline-info mb-1 mt-1">
+          <i class="fa fa-shopping-cart"></i> Add to Cart
+        </button>
+        <figcaption>
+          <a href="#" class="title text-dark text-md text-uppercase">{{item.name}}</a>
+          <p class="text-muted small">Part Number: {{item.part}}</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
