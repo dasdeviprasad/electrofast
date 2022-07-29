@@ -2,32 +2,32 @@
   <div class="container">
     <div class="row d-flex justify-content-center my-4">
       <div class="row border-bottom pb-3 pt-3" *ngFor="let item of data">
-        <div class="col-lg-3 col-md-12 mb-4 mb-lg-0 p-1">
+        <div class="col-5 mb-4 mb-lg-0 p-1">
           <!-- Image -->
           <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-            <img src={{item.url}} style="width: 120px; height: 100px;" alt="Blue Jeans Jacket" />
+            <img src={{item.url}} class="w-100" style="object-fit: contain; height: 100px;" alt="Product Image" />
           </div>
           <!-- Image -->
         </div>
 
-        <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+        <div class="col-7 mb-4 mb-lg-0">
           <!-- Data -->
-          <p><strong>{{item.name}}</strong></p>
+          <p class="mb-1 pb-1 text-capitalize">{{item.name}}</p>
           <p class="font-weight-bold m-0">Part Number</p>
-          <p class="m-0">{{item.part}}</p>
+          <p class="m-0 text-muted">{{item.part}}</p>
           <!-- Data -->
         </div>
 
-        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+        <div class="col-12">
           <!-- Quantity -->
-          <div class="d-flex mb-1" style="max-width: 300px">
+          <div class="d-flex mb-1">
             <button class="btn btn-primary px-3 me-2 h-75"
               onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
               <i class="fas fa-minus"></i>
             </button>
 
             <div class="form-outline">
-              <input id="form1" min="0" name="quantity" [value]="item.quantity" type="number" class="form-control" />
+              <input min="0" name="quantity" [value]="item.quantity" type="number" class="form-control text-center" style="width: 70px" />
               <label class="form-label" for="form1">Quantity</label>
             </div>
 
@@ -35,16 +35,16 @@
               onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
               <i class="fas fa-plus"></i>
             </button>
-          </div>
-          <!-- Quantity -->
 
-          <!-- Price -->
-          <p class="text-start text-md-center">
+            <!-- Price -->
+          <p class="text-start text-md-center mt-1 ml-auto">
             <button type="button" class="btn btn-danger btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">
               <i class="fas fa-trash">&nbsp;</i>Remove
             </button>
           </p>
           <!-- Price -->
+          </div>
+          <!-- Quantity -->
         </div>
       </div>
       <!-- Single item -->
