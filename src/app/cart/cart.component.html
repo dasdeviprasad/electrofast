@@ -1,71 +1,136 @@
-<section class="h-100">
+<section class="section-pagetop bg">
   <div class="container">
-    <div class="row d-flex justify-content-center my-4">
-      <div class="row border-bottom pb-3 pt-3" *ngFor="let item of data">
-        <div class="col-5 mb-4 mb-lg-0 p-1">
-          <!-- Image -->
-          <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-            <img src={{item.url}} class="w-100" style="object-fit: contain; height: 100px;" alt="Product Image" />
-          </div>
-          <!-- Image -->
-        </div>
+    <h2 class="title-page">Cart - {{(data | async)?.length}} Items</h2>
+  </div> <!-- container //  -->
+</section>
 
-        <div class="col-7 mb-4 mb-lg-0">
-          <!-- Data -->
-          <p class="mb-1 pb-1 text-capitalize">{{item.name}}</p>
-          <p class="font-weight-bold m-0">Part Number</p>
-          <p class="m-0 text-muted">{{item.part}}</p>
-          <!-- Data -->
-        </div>
-
-        <div class="col-12">
-          <!-- Quantity -->
-          <div class="d-flex mb-1">
-            <button class="btn btn-primary px-3 me-2 h-75"
-              onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-              <i class="fas fa-minus"></i>
-            </button>
-
-            <div class="form-outline">
-              <input min="0" name="quantity" [value]="item.quantity" type="number" class="form-control text-center" style="width: 70px" />
-              <label class="form-label" for="form1">Quantity</label>
+<section class="h-100 mt-3 mb-4">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-7">
+        <div class="row shadow-sm pb-3 pt-3 pr-3" *ngFor="let item of data | async">
+          <div class="col-4 mb-4 mb-lg-0 p-1">
+            <!-- Image -->
+            <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+              <img src={{item.image_url}} class="w-100" style="object-fit: contain; height: 110px;" alt="Product Image" />
             </div>
-
-            <button class="btn btn-primary px-3 ms-2 h-75"
-              onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-              <i class="fas fa-plus"></i>
-            </button>
-
-            <!-- Price -->
-          <p class="text-start text-md-center mt-1 ml-auto">
-            <button type="button" class="btn btn-danger btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">
-              <i class="fas fa-trash">&nbsp;</i>Remove
-            </button>
-          </p>
-          <!-- Price -->
+            <!-- Image -->
           </div>
-          <!-- Quantity -->
+
+          <div class="col-8 mb-4 mb-lg-0">
+            <!-- Data -->
+            <p class="mb-1 pb-1 text-capitalize">{{item.name}}</p>
+            <p class="text-muted m-0"><strong>Part Number: </strong>{{item.part}}</p>
+            <!-- Data -->
+
+            <div class="mt-3">
+              <!-- Quantity -->
+              <div class="d-flex mb-1">
+                <div class="bg-light rounded d-flex" style="width: 160px;">
+                  <button class="btn btn-outline-light btn-sm px-3"
+                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                    <i class="fas fa-minus text-dark"></i>
+                  </button>
+
+                  <div class="form-outline">
+                    <input min="1" name="quantity" [value]="item.quantity" 
+                      type="number" class="form-control text-center pl-4 pl-md-2 pl-sm-2" 
+                      style="width: 70px; height: 50px; box-shadow: 0px 0px 2px 0px #555; background-color: #FBFBFB;" />
+                  </div>
+
+                  <button class="btn btn-outline-light btn-sm px-3"
+                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                    <i class="fas fa-plus text-dark"></i>
+                  </button>
+                </div>
+
+                <!-- Price -->
+                <p class="text-start text-md-center mt-1 ml-auto">
+                  <button type="button" class="btn btn-outline-secondary btn-md me-1 mb-2" data-mdb-toggle="tooltip"
+                    title="Remove item" (click)="removeItem(item)">
+                    <i class="fas fa-trash mr-2"></i>Remove
+                  </button>
+                </p>
+                <!-- Price -->
+              </div>
+              <!-- Quantity -->
+            </div>
+          </div>
         </div>
       </div>
-      <!-- Single item -->
-    </div>
 
-    <div class="card mb-4 mb-lg-0">
-      <div class="card-body">
-        <p><strong>We accept</strong></p>
-        <img class="me-2" width="45px"
-          src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
-          alt="Visa" />
-        <img class="me-2" width="45px"
-          src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
-          alt="American Express" />
-        <img class="me-2" width="45px"
-          src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
-          alt="Mastercard" />
-        <img class="me-2" width="45px"
-          src="data:image/png;base64,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"
-          alt="PayPal" />
+      <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-sm-3 mt-md-3 mt-lg-0">
+        <div class="row">
+          <div class="col-12 p-4 bg-light rounded">
+            <div class="border-bottom pb-3 border-bottom border-secondary text-lg">Order Summary</div>
+
+            <div class="row pt-2 pb-1">
+              <div class="col-8">Subtotal</div>
+              <div class="col-4">$0.00</div>
+            </div>
+
+            <div class="row pt-1 pb-1">
+              <div class="col-8">Tax</div>
+              <div class="col-4">$0.00</div>
+            </div>
+
+            <div class="row font-weight-bold">
+              <p class="col-8 border-top border-bottom">Total</p>
+              <p class="col-4 border-top border-bottom">$0.00</p>
+            </div>
+          </div>
+
+          <div class="input-group mb-3 mt-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Customer PO Number</span>
+            </div>
+            <input type="text" class="form-control" placeholder="PO Number" />
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Additional items/information</span>
+            </div>
+            <textarea class="form-control" placeholder="Information"></textarea>
+          </div>
+
+
+          <p class="col-12 mt-4 mb-0"><strong>We accept</strong></p>
+          <img class="me-2 col-3" width="45px"
+            src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+            alt="Visa" />
+          <img class="me-2 col-3" width="45px"
+            src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+            alt="American Express" />
+          <img class="me-2 col-3" width="45px"
+            src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+            alt="Mastercard" />
+          <img class="me-2 col-3" width="45px"
+            src="data:image/png;base64,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"
+            alt="PayPal" />
+        </div>
+
+        <button type="button" (click)="checkout()" class="btn btn-primary w-100 mt-3 pt-3 pb-3 mb-3">Checkout</button>
       </div>
     </div>
   </div>
+</section>
+
+<!-- ========================= SECTION  ========================= -->
+<section class="section-name bg padding-y pb-3">
+  <div class="container">
+    <h4>Payment and refund policy</h4>
+    <p>
+      We offer refund and/or exchange within the first 30 days of your purchase, if 30 days have passed since your
+      purchase, you will not be offered a refund and/or exchange of any kind.
+    <p class="font-weight-bold">Eligibility for Refunds and Exchanges</p>
+    <ul>
+      <li>Your item must be unused and in the same condition that you received it.</li>
+      <li>The item must be in the original packaging.</li>
+      <li>To complete your return, we require a receipt or proof of purchase.</li>
+      <li>Only regular priced items may be refunded, sale items cannot be refunded.</li>
+      <li>If the item in question was marked as a gift when purchased and shipped directly to you, you will receive a
+        gift credit for the value of your return.</li>
+    </ul>
+  </div><!-- container // -->
 </section>

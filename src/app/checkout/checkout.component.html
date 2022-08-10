@@ -1,0 +1,169 @@
+<div *ngIf="(data | async) as items">
+  <section class="section-pagetop bg">
+    <div class="container">
+      <div class="row justify-content-between">
+        <h2 class="title-page col-8">Select Billing & Delivery Address</h2>
+        <button type="button" class="btn btn-secondary mb-2 col-flex" (click)="navigateToHome()">
+          <i class="fa fa-angle-left mr-2"></i>
+          Continue Shopping
+        </button>
+      </div>
+    </div> <!-- container //  -->
+  </section>
+
+  <section class="h-100 mt-3 mb-4">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-1 col-lg-6 mb-lg-2">&nbsp;</div>
+        <div class="col-lg-6 col-12 mb-lg-2 row">
+          <button type="button" class="btn btn-outline-danger mr-2 col">Expedite Order</button>
+          <button type="button" class="btn btn-primary col">Request Quote</button>
+        </div>
+
+        <!-- Billing Address START -->
+        <div class="col-lg-6 col-12">
+          <div class="border-bottom p-3 border-bottom border-secondary text-lg bg-secondary text-white">Billing Address
+          </div>
+
+          <div class="input-group pt-2 pb-1 bg-white rounded mt-2 mb-1 p-1 shadow" *ngFor="let a of addresses">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white border-0">
+                <input type="checkbox" style="width: 15px; height: 15px;">
+              </div>
+            </div>
+
+            <div class="col text-capitalize">
+              <strong class="col-12 text-lg">Deviprasad Das</strong>
+              <div class="mb-1 col-12">{{a.address1}}, {{a.address2}}</div>
+              <div class="mb-1 col-12">{{a.city}}, {{a.state}}, {{a.zipcode}}</div>
+              <div class="mb-1 col-12"><span class="text-secondary font-weight-bold">Phone:</span> {{a.phone}}</div>
+            </div>
+          </div>
+        </div>
+        <!-- Billing Address END -->
+
+        <!-- Delivery Address START -->
+        <div class="col-lg-6 col-12">
+          <div class="border-bottom p-3 border-bottom border-secondary text-lg bg-secondary text-white">Delivery Address
+          </div>
+
+          <div class="input-group pt-2 pb-1 bg-white rounded mt-2 mb-1 p-1 shadow" *ngFor="let a of addresses">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-white border-0">
+                <input type="checkbox" style="width: 15px; height: 15px;">
+              </div>
+            </div>
+
+            <div class="col text-capitalize">
+              <strong class="col-12 text-lg">Deviprasad Das</strong>
+              <div class="mb-1 col-12">{{a.address1}}, {{a.address2}}</div>
+              <div class="mb-1 col-12">{{a.city}}, {{a.state}}, {{a.zipcode}}</div>
+              <div class="mb-1 col-12"><span class="text-secondary font-weight-bold">Phone:</span> {{a.phone}}</div>
+            </div>
+          </div>
+        </div>
+        <!-- Delivery Address END -->
+      </div>
+
+      <div class="row justify-content-between mt-5 mb-5">
+        <h5 class="ml-3 mb-3">Add New Address</h5>
+        <div class="form col-12">
+
+          <div class="row mb-3 justify-content-between">
+            <!-- Name -->
+            <div class="input-group col-6">
+              <div class="input-group-prepend w-33">
+                <span class="input-group-text w-100">Name <sup>*</sup></span>
+              </div>
+              <input type="text" class="form-control" placeholder="Name" />
+            </div>
+            <!-- Name -->
+
+            <!-- Phone -->
+            <div class="input-group col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Phone</span>
+              </div>
+              <input type="text" class="form-control" mask="(000) 000-000" placeholder="(XXX) XXX-XXXX" />
+            </div>
+            <!-- Phone -->
+          </div>
+
+          <div class="row justify-content-between mb-3">
+            <!-- Address 1 -->
+            <div class="input-group col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Address 1 <sup>*</sup></span>
+              </div>
+              <input type="text" class="form-control" placeholder="Address 1" />
+            </div>
+            <!-- Address 1 -->
+
+            <!-- Address 2 -->
+            <div class="input-group col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Address 2</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Address 2" />
+            </div>
+            <!-- Address 2 -->
+          </div>
+
+          <div class="row mb-3">
+            <!-- Country -->
+            <div class="input-group col-6 col-lg-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Country</span>
+              </div>
+              <select class="custom-select">
+                <option selected="" value="UNITED STATES">UNITED STATES</option>
+                <option value="ALAND ISLANDS">ALAND ISLANDS</option>
+                <option value="BONAIRE, SINT EUSTATIUS AND SABA">BONAIRE, SINT EUSTATIUS AND SABA</option>
+                <option value="CURACAO">CURACAO</option>
+                <option value="MONTENEGRO">MONTENEGRO</option>
+                <option value="PALESTINE">PALESTINE</option>
+                <option value="SAINT BARTHELEMY">SAINT BARTHELEMY</option>
+                <option value="SAINT MARTIN (FRENCH PART)">SAINT MARTIN (FRENCH PART)</option>
+                <option value="SINT MAARTEN (DUTCH PART)">SINT MAARTEN (DUTCH PART)</option>
+                <option value="SOUTH SUDAN">SOUTH SUDAN</option>
+                <option value="TIMOR,LESTE">TIMOR,LESTE</option>
+              </select>
+            </div>
+            <!-- Country -->
+
+            <!-- State -->
+            <div class="input-group col-6 col-lg-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">State</span>
+              </div>
+              <input type="text" class="form-control" placeholder="State" />
+            </div>
+            <!-- State -->
+
+            <!-- City -->
+            <div class="input-group col-6 col-lg-3 mt-3 mt-lg-0">
+              <div class="input-group-prepend">
+                <span class="input-group-text">City</span>
+              </div>
+              <input type="text" class="form-control" placeholder="City" />
+            </div>
+            <!-- City -->
+
+            <!-- ZIP Code -->
+            <div class="input-group col-6 col-lg-3 mt-3 mt-lg-0">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Zip Code</span>
+              </div>
+              <input type="text" class="form-control" placeholder="ZIP Code" />
+            </div>
+            <!-- ZIP Code -->
+          </div>
+
+          <div class="row justify-content-end mb-5">
+            <button type="button" class="btn btn-outline-primary col-2">Use this Address</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

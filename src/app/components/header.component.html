@@ -1,0 +1,106 @@
+<nav class="navbar sticky-top navbar-expand-lg justify-content-between navbar-dark bg-dark text-white">
+    <a href="#" class="navbar-brand">
+      <!-- <i class="fa fa-bolt">&nbsp;</i>ElectroFast  -->
+      <img src="/assets/images/logos/electrofast_2.png" />
+    </a>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item active dropdown">
+          <a class="nav-link dropdown-toggle" id="chemicalDropdown" role="button" data-toggle="dropdown" href="#">
+            Chemical<span class="sr-only">(current)</span>
+          </a>
+  
+          <div class="dropdown-menu" aria-labelledby="chemicalDropdown">
+            <a class="dropdown-item" href="#">3M Chemicals</a>
+            <a class="dropdown-item" href="#">AKTIF Hand Cleaner</a>
+            <a class="dropdown-item" href="#">CRC</a>
+            <a class="dropdown-item" href="#">Health & Safety</a>
+            <a class="dropdown-item" href="#">Misc Chemicals</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Electrical</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="hydraulicDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Hydraulics
+          </a>
+          <div class="dropdown-menu" aria-labelledby="hydraulicDropdown">
+            <a class="dropdown-item" href="#">Bin, Boxes & Racks</a>
+            <a class="dropdown-item" href="#">Brass Fittings</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Clamps</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="marineDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Marine
+          </a>
+          <div class="dropdown-menu" aria-labelledby="marineDropdown">
+            <a class="dropdown-item" href="#">Abrasives</a>
+            <a class="dropdown-item" href="#">Batteries</a>
+            <a class="dropdown-item" href="#">Brass Fittings</a>
+          </div>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link" href="#">Mechanical</a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link" href="#">Transportation</a>
+        </li>
+      </ul>
+    </div>
+  
+    <form action="#" class="search mr-3 fonr-inline col-md col-sm-10">
+      <div class="input-group w-100">
+        <input type="text" class="form-control" placeholder="Search">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  
+    <div class="col col-md col-sm-10">
+      <div class="widgets-wrap float-md-right">
+        <div class="widget-header mr-3">
+          <a routerLink="/cart" routerLinkActive="active"  href="#" class="icon icon-sm rounded-circle border">
+            <i class="fa fa-shopping-cart"></i>
+          </a>
+          <span class="badge badge-pill badge-danger notify">{{cartCount}}</span>
+        </div>
+        <div class="widget-header icontext">
+          <a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
+          <div class="text">
+            <span class="text-muted">Welcome!</span>
+            <div>
+              <a href="#" data-toggle="modal" data-target="#signingModal">Sign in</a> |
+              <a href="#">Register</a>
+            </div>
+          </div>
+        </div>
+      </div> <!-- widgets-wrap.// -->
+    </div> <!-- col.// -->
+  </nav>
+
+  <div class="modal fade" id="signingModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Sign In</h5>
+          <button type="button" #closebutton class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <login-form (onLogin)="closeModal()"></login-form>
+        </div>
+      </div>
+    </div>
+  </div>
