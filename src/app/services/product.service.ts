@@ -1,23 +1,32 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Subject } from "rxjs";
+import { BASE_URL } from './config';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class ProductService {
-    private readonly baseUrl;
-    public products = new Subject<any[]>();
-  
-    constructor(private http: HttpClient) {
-      this.baseUrl = 'http://44.207.22.242'
-    }
+  public products = new Subject<any[]>();
+  public filteredProducts = new Subject<any[]>();
 
-    getProducts() {
-        return this.http.get(`${this.baseUrl}/product`).subscribe(data => {
-          console.log(data);
-          this.products.next(data as any[]);
-          return data;
-        });
-    }
+  constructor(private http: HttpClient) { }
+
+  get() {
+    return this.http.get(`${BASE_URL}/product`).subscribe(data => {
+      this.products.next(data as any[]);
+      return data;
+    });
   }
+
+  search(searchTerm: string, select: boolean = false) {
+    return this.http.get(`${BASE_URL}/product?search=${searchTerm}`).subscribe(data => {
+      this.filteredProducts.next(data as any[]);
+
+      if (select) {
+        this.products.next(data as any[]);
+      }
+      return data;
+    });
+  }
+}

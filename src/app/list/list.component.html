@@ -34,23 +34,26 @@
         </button>
       </div>
       <div class="modal-body">
-        <ul *ngIf="selectedItem">
-          <li class="row border-bottom mb-1 pb-1">
+        <ul class="m-0 px-3" *ngIf="selectedItem">
+          <li class="row border-bottom mb-1 pt-1 pb-1 bg-secondary text-white">
             <span class="col font-weight-bold">Code</span>
             <span class="col font-weight-bold text-center" *ngFor="let meta of selectedItem.products[0].metadata">
               {{meta.name}}
             </span>
           </li>
-          <li *ngFor="let prod of selectedItem.products" class="row mt-1 mb-1">
-            <span class="col">
-              <label>
-                <input type="checkbox" (change)="toggleItem(prod.product_number)" />
-                {{prod.product_number}}
-              </label>
-            </span>
-            <span class="col text-center" *ngFor="let meta of prod.metadata">
-              {{meta.value}}
-            </span>
+          <li *ngFor="let prod of selectedItem.products; let i = index" 
+            class="row mt-1 pt-2 pb-1" [ngClass]="{'bg-light': i%2==1}">
+            <label class="row w-100 pl-2">
+              <span class="col">
+                  <input type="checkbox" 
+                  [checked]="prod.selected"
+                  (change)="toggleItem(prod.product_number)" />
+                  {{prod.product_number}}
+              </span>
+              <span class="col text-center" *ngFor="let meta of prod.metadata">
+                {{meta.value}}
+              </span>
+          </label>
           </li>
         </ul>
       </div>

@@ -10,6 +10,7 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { HeaderComponent, LoginFormComponent, NotificationComponent } from './components';
 import { ListComponent } from './list/list.component';
+import {AutocompleteLibModule} from './components/autocomplete-lib.module';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 const maskConfig: Partial<IConfig> = {
@@ -33,6 +34,7 @@ const maskConfig: Partial<IConfig> = {
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    AutocompleteLibModule,
     NgxMaskModule.forRoot(maskConfig),
   ],
   providers: [],
